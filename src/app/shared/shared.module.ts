@@ -2,8 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 
-
+const MaterialModules = [
+  MatCardModule,
+  MatInputModule,
+  MatButtonModule
+];
 
 @NgModule({
   declarations: [],
@@ -11,12 +18,15 @@ import {RouterModule} from '@angular/router';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    ...MaterialModules
   ],
   exports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    ReactiveFormsModule,
+    RouterModule,
+    ...MaterialModules
   ]
 })
 export class SharedModule { }

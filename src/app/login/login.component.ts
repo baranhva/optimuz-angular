@@ -25,4 +25,7 @@ export class LoginComponent implements OnInit {
     this.password = this.loginForm.controls.password;
   }
 
+  submit() {
+  }
+
 }
