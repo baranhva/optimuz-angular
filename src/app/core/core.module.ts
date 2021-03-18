@@ -5,6 +5,7 @@ import {RouterModule} from '@angular/router';
 import {ApiPrefixInterceptor} from './interceptor/api-prefix.interceptor';
 import {JwtInterceptor} from './interceptor/jwt.interceptor';
 import {TokenInterceptor} from './interceptor/token.interceptor';
+import {AuthService} from './service/auth.service';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import {TokenInterceptor} from './interceptor/token.interceptor';
     RouterModule
   ],
   providers: [
+    AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiPrefixInterceptor,

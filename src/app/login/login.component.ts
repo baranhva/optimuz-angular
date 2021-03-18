@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EmailValidator} from '../config';
+import {AuthService} from '../core/service/auth.service';
 
 @Component({
   selector: 'opt-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   email: AbstractControl;
   password: AbstractControl;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -25,7 +26,19 @@ export class LoginComponent implements OnInit {
     this.password = this.loginForm.controls.password;
   }
 
+  isBusyLoggingIn: boolean = false;
+
   submit() {
+    if (this.loginForm.valid && !this.isBusyLoggingIn) {
+      this.isBusyLoggingIn = true;
+      const {email, password} = this.loginForm.value;
+
+      this.authService.login(email, password)
+        .subscribe(() => {
+          console.log(`logged in successfully`);
+          this.isBusyLoggingIn = false;
+        }, err => console.error(err));
+    }
   }
 
 }
