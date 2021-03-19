@@ -6,13 +6,17 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LoginComponent} from './login/login.component';
 import {SharedModule} from './shared/shared.module';
 import {CoreModule} from './core/core.module';
+import {RouterModule} from '@angular/router';
+import {routes} from './app.routes';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+
+    RouterModule.forRoot(routes, {useHash: true}),
   ],
   declarations: [
     AppComponent,
