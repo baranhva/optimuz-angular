@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EmailValidator} from '../config';
 import {AuthService} from '../core/service/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'opt-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   email: AbstractControl;
   password: AbstractControl;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -37,8 +38,20 @@ export class LoginComponent implements OnInit {
         .subscribe(() => {
           console.log(`logged in successfully`);
           this.isBusyLoggingIn = false;
+          this.navigateToCorrectDomain();
         }, err => console.error(err));
     }
+  }
+
+  private navigateToCorrectDomain() {
+    if (this.authService.isAdmin()) {
+      return this.router.navigate(['admin']);
+    }
+    if (this.authService.isCaretaker()) {
+      return this.router.navigate(['caretaker']);
+    }
+
+    alert(`You do not have access to this application. Use the mobile app!`)
   }
 
 }
