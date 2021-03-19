@@ -1,13 +1,17 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
 
+import {CaretakerRoutes} from './caretaker.routes';
+
+import {SharedModule} from '../../shared/shared.module';
+import {DashboardComponent} from './pages/dashboard/dashboard.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent],
   imports: [
-    CommonModule
-  ]
+    RouterModule.forChild(CaretakerRoutes),
+    SharedModule
+  ],
+  declarations: [DashboardComponent]
 })
 export class CaretakerModule { }
