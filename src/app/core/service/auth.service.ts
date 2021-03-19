@@ -7,10 +7,10 @@ import {CanLoad, Route, Router} from '@angular/router';
 
 const jwtHelper = new JwtHelperService();
 
-export type UserType = "ADMIN" | "CARETAKER" | "PATIENT";
+export type UserType = "ADMIN" | "CARE_TAKER" | "PATIENT";
 
 export const AdminType: UserType = "ADMIN";
-export const CaretakerType: UserType = "CARETAKER";
+export const CaretakerType: UserType = "CARE_TAKER";
 export const PatientType: UserType = "PATIENT";
 
 interface TokenPayload {
@@ -52,9 +52,6 @@ export class AuthService implements CanLoad {
           this.decodeToken(tokens);
           return true;
         }),
-        // tap(this.storeTokens),
-        // tap(this.decodeToken),
-        // mapTo(true),
         catchError(error => {
           alert(error.error);
           return of(false);
@@ -91,8 +88,6 @@ export class AuthService implements CanLoad {
   }
 
   private isUserType(type: UserType): boolean {
-    console.log(`this.token: ${this.token}`)
-    console.log(`this.token: ${JSON.stringify(this.token, null, 4)}`)
     return this.token?.type === type;
   }
 
