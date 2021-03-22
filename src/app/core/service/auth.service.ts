@@ -4,14 +4,15 @@ import {catchError, map, mapTo, tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {CanLoad, Route, Router} from '@angular/router';
+import * as _ from 'lodash';
 
 const jwtHelper = new JwtHelperService();
 
-export type UserType = "ADMIN" | "CARE_TAKER" | "PATIENT";
+export type UserType = 'ADMIN' | 'CARETAKER' | 'PATIENT';
 
-export const AdminType: UserType = "ADMIN";
-export const CaretakerType: UserType = "CARE_TAKER";
-export const PatientType: UserType = "PATIENT";
+export const AdminType: UserType = 'ADMIN';
+export const CaretakerType: UserType = 'CARETAKER';
+export const PatientType: UserType = 'PATIENT';
 
 interface TokenPayload {
   id?: number;
@@ -56,25 +57,25 @@ export class AuthService implements CanLoad {
           alert(error.error);
           return of(false);
         })
-      )
+      );
   }
 
   refreshToken(): Observable<Tokens> {
     return this.http.post<Tokens>(`/auth/refresh`, {
-      'refreshToken': this.getRefreshToken()
+      refreshToken: this.getRefreshToken()
     }).pipe(tap(this.storeTokens));
   }
 
-  private decodeToken(tokens: Tokens) {
+  private decodeToken(tokens: Tokens): void {
     this.token = jwtHelper.decodeToken(tokens.accessToken);
   }
 
-  private storeTokens(tokens: Tokens) {
+  private storeTokens(tokens: Tokens): void {
     localStorage.setItem(this.ACCESS_TOKEN_STORAGE_KEY, tokens.accessToken);
     localStorage.setItem(this.REFRESH_TOKEN_STORAGE_KEY, tokens.refreshToken);
   }
 
-  private removeTokens() {
+  private removeTokens(): void {
     localStorage.removeItem(this.ACCESS_TOKEN_STORAGE_KEY);
     localStorage.removeItem(this.REFRESH_TOKEN_STORAGE_KEY);
   }
@@ -96,7 +97,7 @@ export class AuthService implements CanLoad {
   }
 
   canLoad(route: Route): boolean {
-    if (!!route.data['type'] && this.isUserType(route.data['type'])) {
+    if (_.has(route.data, 'type') && this.isUserType(_.get(route.data, 'type'))) {
       return true;
     } else {
       if (!this.isLoggedIn()) {
