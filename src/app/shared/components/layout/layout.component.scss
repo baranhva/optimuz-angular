@@ -1,5 +1,30 @@
 :host {
+  $height-navbar: 56px;
+
+  nav {
+    height: $height-navbar;
+    left: 0;
+    top: 0;
+    right: 0;
+    position: fixed;
+    z-index: 2;
+  }
+
   mat-sidenav-container {
-    height: 100vh;
+    top: $height-navbar;
+    height: calc(100vh - #{$height-navbar});
+
+    mat-sidenav {
+      mat-nav-list {
+        a {
+          align-items: center;
+          display: flex;
+        }
+      }
+    }
+
+    mat-sidenav-content {
+      padding: 15px;
+    }
   }
 }
