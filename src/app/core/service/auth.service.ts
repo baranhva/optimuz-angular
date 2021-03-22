@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {JwtHelperService} from '@auth0/angular-jwt';
-import {CanLoad, Route, Router} from '@angular/router';
+import {CanActivate, CanLoad, Route, Router} from '@angular/router';
 import has from 'lodash/has';
 import get from 'lodash/get';
 
@@ -30,7 +30,7 @@ export interface Tokens {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements CanLoad {
+export class AuthService implements CanActivate, CanLoad {
 
   private token: TokenPayload;
 
@@ -54,6 +54,11 @@ export class AuthService implements CanLoad {
 
   getRefreshToken(): string {
     return localStorage.getItem(this.REFRESH_TOKEN_STORAGE_KEY);
+  }
+
+  logout(): void {
+    this.removeTokens();
+    this.router.navigate(['/']);
   }
 
   login(email: string, password: string): Observable<boolean> {
@@ -89,6 +94,7 @@ export class AuthService implements CanLoad {
   private removeTokens(): void {
     localStorage.removeItem(this.ACCESS_TOKEN_STORAGE_KEY);
     localStorage.removeItem(this.REFRESH_TOKEN_STORAGE_KEY);
+    delete this.token;
   }
 
   isAdmin(): boolean {
@@ -105,6 +111,10 @@ export class AuthService implements CanLoad {
 
   isLoggedIn(): boolean {
     return !jwtHelper.isTokenExpired(this.getAccessToken());
+  }
+
+  canActivate(): boolean {
+    return this.isLoggedIn();
   }
 
   canLoad(route: Route): boolean {

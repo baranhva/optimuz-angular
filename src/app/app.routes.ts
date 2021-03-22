@@ -14,6 +14,7 @@ export const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('src/app/modules/admin/admin.module').then(m => m.AdminModule),
     canLoad: [AuthService],
+    canActivate: [AuthService],
     data: {
       type: AdminType
     }
@@ -22,6 +23,7 @@ export const routes: Routes = [
     path: 'caretaker',
     loadChildren: () => import('src/app/modules/caretaker/caretaker.module').then(m => m.CaretakerModule),
     canLoad: [AuthService],
+    canActivate: [AuthService],
     data: {
       type: CaretakerType
     }
