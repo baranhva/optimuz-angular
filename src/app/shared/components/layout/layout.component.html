@@ -1,5 +1,11 @@
 <nav class="mat-elevation-z6 background-colors-primary-500">
-
+  <button
+    class="right"
+    mat-raised-button
+    color="accent"
+    (click)="authService.logout()">
+    Logout
+  </button>
 </nav>
 
 <mat-sidenav-container>

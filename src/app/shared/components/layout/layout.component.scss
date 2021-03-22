@@ -1,8 +1,10 @@
 :host {
+  $padding: 12px;
   $height-navbar: 56px;
 
   nav {
-    height: $height-navbar;
+    height: $height-navbar - #{$padding * 2};
+    padding: $padding;
     left: 0;
     top: 0;
     right: 0;
