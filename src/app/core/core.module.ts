@@ -6,6 +6,7 @@ import {ApiPrefixInterceptor} from './interceptor/api-prefix.interceptor';
 import {JwtInterceptor} from './interceptor/jwt.interceptor';
 import {TokenInterceptor} from './interceptor/token.interceptor';
 import {AuthService} from './service/auth.service';
+import {LoginGuard} from './guard/login.guard';
 
 
 @NgModule({
@@ -31,7 +32,9 @@ import {AuthService} from './service/auth.service';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+
+    LoginGuard
   ]
 })
 export class CoreModule {

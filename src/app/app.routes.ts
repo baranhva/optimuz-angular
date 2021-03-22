@@ -1,12 +1,14 @@
 import {Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {AdminType, AuthService, CaretakerType} from './core/service/auth.service';
+import {LoginGuard} from './core/guard/login.guard';
 
 export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: 'admin',
