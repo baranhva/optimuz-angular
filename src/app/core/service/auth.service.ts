@@ -37,7 +37,16 @@ export class AuthService implements CanLoad {
   private readonly ACCESS_TOKEN_STORAGE_KEY: string = 'ACCESS_TOKEN';
   private readonly REFRESH_TOKEN_STORAGE_KEY: string = 'REFRESH_TOKEN';
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+    this.init();
+  }
+
+  private init(): void {
+    const token = this.getAccessToken();
+    if (!jwtHelper.isTokenExpired(token)) {
+      this.token = jwtHelper.decodeToken(token);
+    }
+  }
 
   getAccessToken(): string {
     return localStorage.getItem(this.ACCESS_TOKEN_STORAGE_KEY);
