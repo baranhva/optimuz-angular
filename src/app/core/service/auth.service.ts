@@ -1,12 +1,14 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {catchError, map, mapTo, tap} from 'rxjs/operators';
+import {catchError, map, tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {CanLoad, Route, Router} from '@angular/router';
-import * as _ from 'lodash';
+import has from 'lodash/has';
+import get from 'lodash/get';
 
 const jwtHelper = new JwtHelperService();
+
 
 export type UserType = 'ADMIN' | 'CARETAKER' | 'PATIENT';
 
@@ -97,7 +99,7 @@ export class AuthService implements CanLoad {
   }
 
   canLoad(route: Route): boolean {
-    if (_.has(route.data, 'type') && this.isUserType(_.get(route.data, 'type'))) {
+    if (has(route.data, 'type') && this.isUserType(get(route.data, 'type'))) {
       return true;
     } else {
       if (!this.isLoggedIn()) {
