@@ -7,6 +7,9 @@ import {JwtInterceptor} from './interceptor/jwt.interceptor';
 import {TokenInterceptor} from './interceptor/token.interceptor';
 import {AuthService} from './service/auth.service';
 import {LoginGuard} from './guard/login.guard';
+import {CacheService} from './service/cache.service';
+import {CacheMapService} from './service/cache-map.service';
+import {CachingInterceptor} from './interceptor/caching.interceptor';
 
 
 @NgModule({
@@ -18,6 +21,7 @@ import {LoginGuard} from './guard/login.guard';
   ],
   providers: [
     AuthService,
+    { provide: CacheService, useClass: CacheMapService },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiPrefixInterceptor,
@@ -33,7 +37,11 @@ import {LoginGuard} from './guard/login.guard';
       useClass: TokenInterceptor,
       multi: true
     },
-
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CachingInterceptor,
+      multi: true
+    },
     LoginGuard
   ]
 })
