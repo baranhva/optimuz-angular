@@ -7,6 +7,7 @@ import {SharedModule} from '../../shared/shared.module';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {LAYOUT_SIDEBAR_ITEMS} from '../../shared/components/layout/layout.tokens';
 import {AdminSidebarItems} from './admin.sidebar-items';
+import { UsersOverviewComponent } from './pages/users-overview/users-overview.component';
 
 
 @NgModule({
@@ -14,7 +15,7 @@ import {AdminSidebarItems} from './admin.sidebar-items';
     RouterModule.forChild(AdminRoutes),
     SharedModule
   ],
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, UsersOverviewComponent],
   providers: [
     {provide: LAYOUT_SIDEBAR_ITEMS, useValue: AdminSidebarItems}
   ]
