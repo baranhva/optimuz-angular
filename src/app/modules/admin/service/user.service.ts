@@ -10,6 +10,8 @@ interface User {
   firstName?: string;
   lastName?: string;
   type?: UserType;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 @Injectable({

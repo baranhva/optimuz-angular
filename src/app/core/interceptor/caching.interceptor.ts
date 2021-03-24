@@ -1,8 +1,7 @@
-import {CacheMapService} from '../service/cache-map.service';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
-import {tap} from 'rxjs/operators';
-import {Observable, of} from 'rxjs';
 import {Injectable} from '@angular/core';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
+import {Observable, of} from 'rxjs';
+import {tap} from 'rxjs/operators';
 import {CacheService} from '../service/cache.service';
 
 @Injectable()
