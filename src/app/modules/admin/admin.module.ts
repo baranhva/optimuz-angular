@@ -8,6 +8,7 @@ import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {LAYOUT_SIDEBAR_ITEMS} from '../../shared/components/layout/layout.tokens';
 import {AdminSidebarItems} from './admin.sidebar-items';
 import { UsersOverviewComponent } from './pages/users-overview/users-overview.component';
+import {UserService} from './service/user.service';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { UsersOverviewComponent } from './pages/users-overview/users-overview.co
   ],
   declarations: [DashboardComponent, UsersOverviewComponent],
   providers: [
+    UserService,
     {provide: LAYOUT_SIDEBAR_ITEMS, useValue: AdminSidebarItems}
   ]
 })

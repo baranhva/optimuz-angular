@@ -1,0 +1,48 @@
+import { Injectable } from '@angular/core';
+import {UserType} from '../../../core/service/auth.service';
+import {Observable, ReplaySubject, Subject} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {AbstractDataProviderService} from '../../../core/service/abstract-data-provider.service';
+
+interface User {
+  id?: string;
+  email?: string;
+  firstName?: string;
+  lastName?: string;
+  type?: UserType;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService extends AbstractDataProviderService {
+
+  private _users: User[];
+  private users$: Subject<User[]> = new ReplaySubject(1);
+  public readonly users: Observable<User[]> = this.users$.asObservable();
+
+  constructor(private http: HttpClient) {
+    super();
+  }
+
+  private fetchUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`/admin/users`);
+  }
+
+  destroy(): void {
+    this.setUsers(null);
+  }
+
+  private setUsers(users: User[]) {
+    this._users = users;
+    this.users$.next(users);
+  }
+
+  init(): void {
+    this.fetchUsers()
+      .subscribe((users: User[]) => {
+        this.setUsers(users);
+        this.setDataIsInit();
+      });
+  }
+}
