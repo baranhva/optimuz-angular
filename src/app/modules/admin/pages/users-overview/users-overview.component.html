@@ -25,3 +25,11 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
 </table>
+
+<button
+  mat-fab
+  color="warn"
+  style="position: fixed; right: 45px; bottom: 45px;"
+  (click)="openCaretakerCreationDialog()">
+  <mat-icon>add</mat-icon>
+</button>

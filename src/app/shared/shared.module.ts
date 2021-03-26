@@ -12,6 +12,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 import { UserTypePipe } from './pipe/user-type.pipe';
 import { UserCreateFormComponent } from './components/user-create-form/user-create-form.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 const MaterialModules = [
   MatSidenavModule,
@@ -20,7 +21,8 @@ const MaterialModules = [
   MatCardModule,
   MatInputModule,
   MatButtonModule,
-  MatTableModule
+  MatTableModule,
+  MatDialogModule
 ];
 
 const Components = [
