@@ -10,6 +10,7 @@ import {LayoutComponent} from './components/layout/layout.component';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
+import { UserTypePipe } from './pipe/user-type.pipe';
 
 const MaterialModules = [
   MatSidenavModule,
@@ -26,7 +27,7 @@ const Components = [
 ];
 
 @NgModule({
-  declarations: [...Components],
+  declarations: [...Components, UserTypePipe],
   imports: [
     CommonModule,
     FormsModule,
@@ -40,7 +41,8 @@ const Components = [
     ReactiveFormsModule,
     RouterModule,
     ...MaterialModules,
-    ...Components
+    ...Components,
+    UserTypePipe
   ]
 })
 export class SharedModule { }
