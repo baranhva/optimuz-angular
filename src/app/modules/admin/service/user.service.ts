@@ -3,6 +3,8 @@ import {UserType} from '../../../core/service/auth.service';
 import {Observable, ReplaySubject, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {AbstractDataProviderService} from '../../../core/service/abstract-data-provider.service';
+import {catchError, mapTo, tap} from 'rxjs/operators';
+import produce from 'immer';
 
 interface User {
   id?: string;
@@ -31,7 +33,7 @@ export class UserService extends AbstractDataProviderService {
     return this.http.get<User[]>(`/admin/users`);
   }
 
-  destroy(): void {
+  protected destroy(): void {
     this.setUsers(null);
   }
 
@@ -40,11 +42,27 @@ export class UserService extends AbstractDataProviderService {
     this.users$.next(users);
   }
 
-  init(): void {
+  protected init(): void {
     this.fetchUsers()
       .subscribe((users: User[]) => {
         this.setUsers(users);
         this.setDataIsInit();
       });
+  }
+
+  public createCaretaker(email: string, firstName: string, lastName: string): Observable<boolean> {
+    return this.http.post<User>(`/admin/caretaker`, {email, firstName, lastName})
+      .pipe(
+        tap(this.addNewUser),
+        mapTo(true),
+        //
+      )
+  }
+
+  private addNewUser(user: User) {
+    console.log(`new user added`);
+    this.setUsers(produce<User[]>(this._users, (draft: User[]) => {
+      draft.unshift(user);
+    }));
   }
 }
