@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../../service/user.service';
 
 @Component({
   selector: 'opt-users-overview',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersOverviewComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns: string[] = ['email', 'firstName', 'lastName'];
+
+  constructor(public userService: UserService) { }
 
   ngOnInit(): void {
   }

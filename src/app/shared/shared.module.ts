@@ -9,6 +9,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {LayoutComponent} from './components/layout/layout.component';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
 
 const MaterialModules = [
   MatSidenavModule,
@@ -16,7 +17,8 @@ const MaterialModules = [
   MatListModule,
   MatCardModule,
   MatInputModule,
-  MatButtonModule
+  MatButtonModule,
+  MatTableModule
 ];
 
 const Components = [
