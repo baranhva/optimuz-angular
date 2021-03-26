@@ -14,9 +14,9 @@ export abstract class AbstractDataProviderService implements CanActivate, CanAct
     return this.initialized.asObservable();
   }
 
-  abstract init(): void;
+  protected abstract init(): void;
 
-  abstract destroy(): void;
+  protected abstract destroy(): void;
 
   protected reset() {
     if (this.initialized) {
