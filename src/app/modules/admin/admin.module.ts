@@ -9,6 +9,7 @@ import {LAYOUT_SIDEBAR_ITEMS} from '../../shared/components/layout/layout.tokens
 import {AdminSidebarItems} from './admin.sidebar-items';
 import { UsersOverviewComponent } from './pages/users-overview/users-overview.component';
 import {UserService} from './service/user.service';
+import { CaretakerCreationDialogComponent } from './component/caretaker-creation-dialog/caretaker-creation-dialog.component';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import {UserService} from './service/user.service';
     RouterModule.forChild(AdminRoutes),
     SharedModule
   ],
-  declarations: [DashboardComponent, UsersOverviewComponent],
+  declarations: [DashboardComponent, UsersOverviewComponent, CaretakerCreationDialogComponent],
   providers: [
     UserService,
     {provide: LAYOUT_SIDEBAR_ITEMS, useValue: AdminSidebarItems}
