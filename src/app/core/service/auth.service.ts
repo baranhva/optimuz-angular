@@ -4,8 +4,6 @@ import {catchError, map, tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {CanActivate, CanLoad, Route, Router} from '@angular/router';
-import has from 'lodash/has';
-import get from 'lodash/get';
 
 const jwtHelper = new JwtHelperService();
 
@@ -110,7 +108,7 @@ export class AuthService implements CanActivate, CanLoad {
   }
 
   isLoggedIn(): boolean {
-    return !jwtHelper.isTokenExpired(this.getAccessToken());
+    return !!this.token; // !jwtHelper.isTokenExpired(this.getAccessToken());
   }
 
   canActivate(): boolean {
@@ -118,7 +116,7 @@ export class AuthService implements CanActivate, CanLoad {
   }
 
   canLoad(route: Route): boolean {
-    if (has(route.data, 'type') && this.isUserType(get(route.data, 'type'))) {
+    if (!!route?.data?.type && this.isUserType(route?.data?.type)) {
       return true;
     } else {
       if (!this.isLoggedIn()) {
