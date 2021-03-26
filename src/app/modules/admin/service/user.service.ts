@@ -59,10 +59,9 @@ export class UserService extends AbstractDataProviderService {
       )
   }
 
-  private addNewUser(user: User) {
-    console.log(`new user added`);
+  private addNewUser = (user: User) => {
     this.setUsers(produce<User[]>(this._users, (draft: User[]) => {
       draft.unshift(user);
     }));
-  }
+  };
 }
