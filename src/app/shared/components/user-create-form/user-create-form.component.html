@@ -1,1 +1,21 @@
-<p>user-create-form works!</p>
+<form [formGroup]="form" (ngSubmit)="handleSubmit()">
+  <p>
+    <mat-form-field>
+      <input type="email" matInput placeholder="Email" formControlName="email">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="First Name" formControlName="firstName">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Last Name" formControlName="lastName">
+    </mat-form-field>
+  </p>
+
+  <div class="button">
+    <button class="right" type="submit" mat-raised-button color="primary">Create</button>
+  </div>
+</form>

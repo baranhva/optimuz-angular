@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'opt-caretaker-creation-dialog',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CaretakerCreationDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<CaretakerCreationDialogComponent>) { }
 
   ngOnInit(): void {
+  }
+
+  closeDialog() {
+    this.dialogRef.close();
   }
 
 }
