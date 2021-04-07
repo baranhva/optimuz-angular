@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {PatientCreationDialogComponent} from '../../component/patient-creation-dialog/patient-creation-dialog.component';
+import {PatientService} from '../../service/patient.service';
 
 @Component({
   selector: 'opt-patients-overview',
@@ -9,7 +10,9 @@ import {PatientCreationDialogComponent} from '../../component/patient-creation-d
 })
 export class PatientsOverviewComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  displayedColumns: string[] = ['email', 'firstName', 'lastName'];
+
+  constructor(public patientService: PatientService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
