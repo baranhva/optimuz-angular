@@ -4,15 +4,10 @@ import {catchError, map, tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {CanActivate, CanLoad, Route, Router} from '@angular/router';
+import {AdminType, CaretakerType, UserType} from '../../shared/interface/user.interface';
 
 const jwtHelper = new JwtHelperService();
 
-
-export type UserType = 'ADMIN' | 'CARETAKER' | 'PATIENT';
-
-export const AdminType: UserType = 'ADMIN';
-export const CaretakerType: UserType = 'CARETAKER';
-export const PatientType: UserType = 'PATIENT';
 
 interface TokenPayload {
   id?: number;

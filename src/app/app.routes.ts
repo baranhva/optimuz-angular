@@ -1,7 +1,8 @@
 import {Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
-import {AdminType, AuthService, CaretakerType} from './core/service/auth.service';
+import {AuthService} from './core/service/auth.service';
 import {LoginGuard} from './core/guard/login.guard';
+import {AdminType, CaretakerType} from './shared/interface/user.interface';
 
 export const routes: Routes = [
   {

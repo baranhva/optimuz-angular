@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {AdminType, CaretakerType, PatientType, UserType} from '../../core/service/auth.service';
+import {AdminType, CaretakerType, PatientType, UserType} from '../interface/user.interface';
 
 @Pipe({
   name: 'userType'

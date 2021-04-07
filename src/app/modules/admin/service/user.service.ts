@@ -1,20 +1,10 @@
-import { Injectable } from '@angular/core';
-import {UserType} from '../../../core/service/auth.service';
+import {Injectable} from '@angular/core';
 import {Observable, ReplaySubject, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {AbstractDataProviderService} from '../../../core/service/abstract-data-provider.service';
-import {catchError, mapTo, tap} from 'rxjs/operators';
+import {mapTo, tap} from 'rxjs/operators';
 import produce from 'immer';
-
-interface User {
-  id?: string;
-  email?: string;
-  firstName?: string;
-  lastName?: string;
-  type?: UserType;
-  createdAt?: string;
-  updatedAt?: string;
-}
+import {User} from '../../../shared/interface/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +46,7 @@ export class UserService extends AbstractDataProviderService {
         tap(this.addNewUser),
         mapTo(true),
         //
-      )
+      );
   }
 
   private addNewUser = (user: User) => {
