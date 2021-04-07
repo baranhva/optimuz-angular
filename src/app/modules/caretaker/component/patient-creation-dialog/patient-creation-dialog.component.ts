@@ -22,7 +22,7 @@ export class PatientCreationDialogComponent extends AbstractCreationDialogCompon
     if (!this.isBusyCreating()) {
       this.startCreatingProcess();
 
-      this.patientService.createCaretaker(user?.email, user?.firstName, user?.lastName)
+      this.patientService.createPatient(user?.email, user?.firstName, user?.lastName)
         .subscribe(this.onSuccess, this.onError);
     }
   }
