@@ -41,7 +41,7 @@ export class UserService extends AbstractDataProviderService {
   }
 
   public createCaretaker(email: string, firstName: string, lastName: string): Observable<boolean> {
-    return this.http.post<User>(`/admin/caretaker`, {email, firstName, lastName})
+    return this.http.post<User>(`/admin/caretakers`, {email, firstName, lastName})
       .pipe(
         tap(this.addNewUser),
         mapTo(true),

@@ -17,7 +17,7 @@ export class PatientService {
   }
 
   public createPatient(email: string, firstName: string, lastName: string): Observable<boolean> {
-    return this.http.post<User>(`/caretaker/patient`, {email, firstName, lastName})
+    return this.http.post<User>(`/caretaker/patients`, {email, firstName, lastName})
       .pipe(
         mapTo(true)
       );
