@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {UserService} from '../../service/user.service';
 import {MatDialog} from '@angular/material/dialog';
 import {CaretakerCreationDialogComponent} from '../../component/caretaker-creation-dialog/caretaker-creation-dialog.component';
@@ -6,7 +6,9 @@ import {CaretakerCreationDialogComponent} from '../../component/caretaker-creati
 @Component({
   selector: 'opt-users-overview',
   templateUrl: './users-overview.component.html',
-  styleUrls: ['./users-overview.component.scss']
+  styleUrls: ['./users-overview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class UsersOverviewComponent implements OnInit {
 

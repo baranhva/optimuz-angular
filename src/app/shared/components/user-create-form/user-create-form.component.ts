@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EmailValidator} from '../../../config';
 
@@ -11,7 +11,9 @@ export interface UserForm {
 @Component({
   selector: 'opt-user-create-form',
   templateUrl: './user-create-form.component.html',
-  styleUrls: ['./user-create-form.component.scss']
+  styleUrls: ['./user-create-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class UserCreateFormComponent implements OnInit {
 

@@ -127,7 +127,9 @@
   },
   "schematics": {
     "@schematics/angular:component": {
-      "style": "scss"
+      "style": "scss",
+      "changeDetection": "OnPush",
+      "viewEncapsulation": "Emulated"
     }
   },
   "defaultProject": "angular-app"

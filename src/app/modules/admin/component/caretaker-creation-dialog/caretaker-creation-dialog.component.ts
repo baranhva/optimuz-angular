@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import {UserService} from '../../service/user.service';
 import {UserForm} from '../../../../shared/components/user-create-form/user-create-form.component';
@@ -6,7 +6,9 @@ import {UserForm} from '../../../../shared/components/user-create-form/user-crea
 @Component({
   selector: 'opt-caretaker-creation-dialog',
   templateUrl: './caretaker-creation-dialog.component.html',
-  styleUrls: ['./caretaker-creation-dialog.component.scss']
+  styleUrls: ['./caretaker-creation-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class CaretakerCreationDialogComponent implements OnInit {
 
