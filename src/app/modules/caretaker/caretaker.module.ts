@@ -7,6 +7,7 @@ import {SharedModule} from '../../shared/shared.module';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {LAYOUT_SIDEBAR_ITEMS} from '../../shared/components/layout/layout.tokens';
 import {CaretakerSidebarItems} from './caretaker.sidebar-items';
+import { PatientsOverviewComponent } from './pages/patients-overview/patients-overview.component';
 
 
 @NgModule({
@@ -14,7 +15,7 @@ import {CaretakerSidebarItems} from './caretaker.sidebar-items';
     RouterModule.forChild(CaretakerRoutes),
     SharedModule
   ],
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, PatientsOverviewComponent],
   providers: [
     {provide: LAYOUT_SIDEBAR_ITEMS, useValue: CaretakerSidebarItems}
   ]
