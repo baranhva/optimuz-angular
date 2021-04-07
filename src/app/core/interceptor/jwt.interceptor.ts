@@ -10,7 +10,7 @@ import {catchError, filter, switchMap, take} from 'rxjs/operators';
 export class JwtInterceptor implements HttpInterceptor {
 
   private isRefreshing = false;
-  private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  private refreshTokenSubject: BehaviorSubject<Tokens> = new BehaviorSubject<Tokens>(null);
 
   constructor(private authService: AuthService) {
   }
@@ -34,15 +34,15 @@ export class JwtInterceptor implements HttpInterceptor {
       return this.authService.refreshToken().pipe(
         switchMap((token: Tokens) => {
           this.isRefreshing = false;
-          this.refreshTokenSubject.next(token.accessToken);
+          this.refreshTokenSubject.next(token);
           return next.handle(JwtInterceptor.addToken(request, token.accessToken));
         }));
     } else {
       return this.refreshTokenSubject.pipe(
         filter(token => token != null),
         take(1),
-        switchMap((token: string) => {
-          return next.handle(JwtInterceptor.addToken(request, token));
+        switchMap((token: Tokens) => {
+          return next.handle(JwtInterceptor.addToken(request, token.accessToken));
         }));
     }
   }

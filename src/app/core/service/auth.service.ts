@@ -111,15 +111,16 @@ export class AuthService implements CanActivate, CanLoad {
   }
 
   canLoad(route: Route): boolean {
-    if (!!route?.data?.type && this.isUserType(route?.data?.type)) {
-      return true;
-    } else {
-      if (!this.isLoggedIn()) {
-        this.router.navigate(['']);
-        return true;
-      } else {
-        return false;
-      }
-    }
+    return !!route?.data?.type && this.isUserType(route?.data?.type);
+    // if (!!route?.data?.type && this.isUserType(route?.data?.type)) {
+    //   return true;
+    // } else {
+    //   if (!this.isLoggedIn()) {
+    //     this.router.navigate(['']);
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // }
   }
 }
