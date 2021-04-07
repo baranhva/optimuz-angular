@@ -8,6 +8,7 @@ import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {LAYOUT_SIDEBAR_ITEMS} from '../../shared/components/layout/layout.tokens';
 import {CaretakerSidebarItems} from './caretaker.sidebar-items';
 import { PatientsOverviewComponent } from './pages/patients-overview/patients-overview.component';
+import { PatientCreationDialogComponent } from './component/patient-creation-dialog/patient-creation-dialog.component';
 
 
 @NgModule({
@@ -15,7 +16,7 @@ import { PatientsOverviewComponent } from './pages/patients-overview/patients-ov
     RouterModule.forChild(CaretakerRoutes),
     SharedModule
   ],
-  declarations: [DashboardComponent, PatientsOverviewComponent],
+  declarations: [DashboardComponent, PatientsOverviewComponent, PatientCreationDialogComponent],
   providers: [
     {provide: LAYOUT_SIDEBAR_ITEMS, useValue: CaretakerSidebarItems}
   ]
